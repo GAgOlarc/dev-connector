@@ -27,7 +27,7 @@ const ProfileSchema = new Schema({
     },
     skills: {
         type: [String],
-        required: TextTrackCue
+        required: true
     },
     bio: {
         type: String
@@ -56,7 +56,7 @@ const ProfileSchema = new Schema({
                 type: Date
             },
             current: {
-                type: boolean,
+                type: Boolean,
                 default: false
             },
             description: {
@@ -86,7 +86,7 @@ const ProfileSchema = new Schema({
                 type: Date
             },
             current: {
-                type: boolean,
+                type: Boolean,
                 default: false
             },
             description: {
