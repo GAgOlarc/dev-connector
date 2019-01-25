@@ -66,7 +66,7 @@ router.get('/handle/:handle', (req, res) => {
         .populate('user', ['name', 'avatar'])
         .then(profile => {
             if (!profile) {
-                errors.nonprofile = 'There is no profile for this user';
+                errors.noprofile = 'There is no profile for this user';
                 return res.status(404).json(errors);
             }
 
