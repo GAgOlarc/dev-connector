@@ -56,8 +56,8 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 
     const newPost = new Post({
         text: req.body.text,
-        name: req.body.name,
-        avatar: req.body.avatar,
+        name: req.user.name,
+        avatar: req.user.avatar,
         user: req.user.id
     });
 
@@ -121,10 +121,10 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
         .catch(err => res.status(404).json(err));
 });
 
-// @route POST api/posts/comment/:id
+// @route POST api/posts/comment/:post_id
 // @desc  Add comment to post
 // @access Private
-router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/comment/:post_id', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
 
     // Check Validation
@@ -133,7 +133,7 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
         return res.status(400).json(errors);
     }
 
-    Post.findById(req.params.id)
+    Post.findById(req.params.post_id)
         .then(post => {
             const newComment = {
                 text: req.body.text,
@@ -150,20 +150,23 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
         .catch(err => res.status(404).json('No comment found'));
 });
 
-// @route DELETE api/posts/comment/:id/:comment_id
+// @route DELETE api/posts/comment/:post_id/:comment_id
 // @desc  Delete comment from post
 // @access Private
-router.delete('/comment/:id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Post.findById(req.params.id)
+router.delete('/comment/:post_id/:comment_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Post.findById(req.params.post_id)
         .then(post => {
-            // Check to see if comment exists
-            if(post.comments.filter(comment => comment._id.toString() === req.params.comment_id).length === 0) {
+            // Get remove index
+            const removeIndex = post.comments.findIndex(comment => comment._id.toString() === req.params.comment_id);
+
+            // Check if comment exists
+            if (removeIndex === -1) {
                 return res.status(404).json('Comment does not exists');
             }
 
-            // Get remove index
-            const removeIndex = post.comments.map(comment => comment._id.toString())
-                .indexOf(req.params.comment_id);
+            if (post.comments[removeIndex].user.toString() !== req.user.id) {
+                return res.status(400).json('This comment was not created by this user.');
+            }
 
             // Splice comment out of array
             post.comments.splice(removeIndex, 1);
