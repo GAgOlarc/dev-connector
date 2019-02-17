@@ -1,5 +1,5 @@
-const experss = require('express');
-const router = experss.Router();
+const express = require('express');
+const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
@@ -12,12 +12,6 @@ const validateEducationInput = require('../../validation/education');
 const Profile = require('../../models/Profile');
 // Load User Model
 const User = require('../../models/User');
-
-
-// @route   GET api/profile/test
-// @desc    Tests profile route
-// @access  Public
-router.get('/test', (req, res) => res.json({ msg: "Profile Works" }));
 
 // @route   GET api/profile
 // @desc    Get current user profile
@@ -276,7 +270,7 @@ router.delete('/education/:edu_id', passport.authenticate('jwt', { session: fals
 // @access  Private
 router.delete('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-        User.findOneAndRemove({ _id: req.user.id }).then(() => 
+        User.findOneAndRemove({ _id: req.user.id }).then(() =>
             res.json({ success: true })
         );
     });
