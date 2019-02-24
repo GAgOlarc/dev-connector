@@ -3,13 +3,14 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 const SelectListGroup = ({
+    name,
     error,
     info,
     onChange,
     options
 }) => {
     const selectOptions = options.map(option => (
-        <option key="option.label" value="option.value">
+        <option key={option.label} value="option.value">
             {option.label}
         </option>
     ));
@@ -20,6 +21,7 @@ const SelectListGroup = ({
                 className={classnames('form-control form-control-lg', {
                     'is-invalid': error
                 })}
+                name={name}
                 onChange={onChange}>
                 {selectOptions}
             </select>
