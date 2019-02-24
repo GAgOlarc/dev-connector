@@ -60,7 +60,7 @@ export const socialSites = [
 ];
 
 // Select options for status
-export const options = [
+export const listOptions = [
     { label: '* Select Professional Status', value: 0 },
     { label: 'Developer', value: 'Developer' },
     { label: 'Junior Developer', value: 'Junior Developer' },
