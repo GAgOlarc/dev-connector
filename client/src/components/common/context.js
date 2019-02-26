@@ -71,3 +71,18 @@ export const listOptions = [
     { label: 'Intern', value: 'Intern' },
     { label: 'Other', value: 'Other' },
 ];
+
+export const experiences = [
+    {
+        placeholder: 'Company',
+        name: 'company'
+    },
+    {
+        placeholder: 'Job Title',
+        name: 'title'
+    },
+    {
+        placeholder: 'Location',
+        name: 'location'
+    }
+];
