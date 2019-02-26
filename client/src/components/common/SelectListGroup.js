@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const SelectListGroup = ({
     name,
+    value,
     error,
     info,
     onChange,
@@ -25,7 +26,9 @@ const SelectListGroup = ({
                     'is-invalid': error
                 })}
                 name={name}
-                onChange={onChange}>
+                value={value}
+                onChange={onChange}
+            >
                 {selectOptions}
             </select>
             <small className="form-text text-muted">{info}</small>
