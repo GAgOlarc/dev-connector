@@ -203,7 +203,7 @@ router.post('/education', passport.authenticate('jwt', { session: false }), (req
             const newEdu = {
                 school: req.body.school,
                 degree: req.body.degree,
-                fieldofstudy: req.body.fieldofstudy,
+                fieldOfStudy: req.body.fieldOfStudy,
                 from: req.body.from,
                 to: req.body.to,
                 current: req.body.current,

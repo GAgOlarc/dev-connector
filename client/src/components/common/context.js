@@ -20,7 +20,7 @@ export const textFieldsContext = [
         info: "City or city & state suggested (eg. Boston, MA)"
     },
     {
-        placeholder: "Skills",
+        placeholder: "* Skills",
         name: "skills",
         info: "Please use comma separated values (eg. HTML, CSS, JavaScript, PHP)"
     },
@@ -74,15 +74,30 @@ export const listOptions = [
 
 export const experiences = [
     {
-        placeholder: 'Company',
+        placeholder: '* Company',
         name: 'company'
     },
     {
-        placeholder: 'Job Title',
+        placeholder: '* Job Title',
         name: 'title'
     },
     {
         placeholder: 'Location',
         name: 'location'
+    }
+];
+
+export const educations = [
+    {
+        placeholder: '* School',
+        name: 'school'
+    },
+    {
+        placeholder: '* Degree or Certification',
+        name: 'degree'
+    },
+    {
+        placeholder: '* Field of Study',
+        name: 'fieldOfStudy'
     }
 ];
