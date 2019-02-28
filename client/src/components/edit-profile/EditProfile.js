@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import InputGroup from '../common/InputGroup';
@@ -143,6 +143,9 @@ class CreateProfile extends Component {
             <div className="create-profile">
                 <div className="container">
                     <div className="col-md-8 m-auto">
+                        <Link to="/dashboard" className="btn btn-light">
+                            Go Back
+                        </Link>
                         <h1 className="display-4 text-center">Edit Your Profile</h1>
                         <form onSubmit={this.onSubmit}>
                             <SelectListGroup
