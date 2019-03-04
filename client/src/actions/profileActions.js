@@ -131,9 +131,9 @@ export const deleteAccount = () => dispatch => {
 // Profile loading
 export const setProfileLoading = () => ({
     type: PROFILE_LOADING
-})
+});
 
 // Clear profile
 export const clearCurrentProfile = () => ({
     type: CLEAR_CURRENT_PROFILE
-})
+});
