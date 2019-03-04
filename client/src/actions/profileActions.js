@@ -56,7 +56,6 @@ export const createProfile = (profileData, history) => dispatch => {
 
 // Add experience
 export const addExperience = (expData, history) => dispatch => {
-    dispatch(setProfileLoading());
     axios.post('/api/profile/experience', expData)
         .then(res => history.push('/dashboard'))
         .catch(err => dispatch({
@@ -67,7 +66,6 @@ export const addExperience = (expData, history) => dispatch => {
 
 // Add education
 export const addEducation = (eduData, history) => dispatch => {
-    dispatch(setProfileLoading());
     axios.post('/api/profile/education', eduData)
         .then(res => history.push('/dashboard'))
         .catch(err => dispatch({
