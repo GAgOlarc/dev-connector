@@ -20,6 +20,13 @@ export default function (state = initialState, action) {
                 posts: [action.payload, ...state.posts]
             };
 
+        case GET_POST:
+            return {
+                ...state,
+                post: action.payload,
+                loading: false
+            };
+
         case GET_POSTS:
             return {
                 ...state,

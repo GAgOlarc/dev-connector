@@ -31,6 +31,36 @@ export const getPosts = (load = true) => dispatch => {
         }));
 }
 
+//Get Post
+export const getPost = (id) => dispatch => {
+    dispatch(setPostLoading());
+    axios.get('/api/posts/' + id)
+        .then(res => dispatch({
+            type: GET_POST,
+            payload: res.data
+        }))
+        .catch(err => dispatch({
+            type: GET_POST,
+            payload: null
+        }));
+}
+
+// Add comment
+export const addComment = (postId, newComment) => dispatch => {
+    axios.post('/api/posts/comment/' + postId, newComment)
+        .then(res => {
+            dispatch({
+                type: GET_POST,
+                payload: res.data
+            });
+            dispatch(clearErrors());
+        })
+        .catch(err => dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        }));
+}
+
 // Delete Post
 export const deletePost = id => dispatch => {
     axios.delete('/api/posts/' + id)
